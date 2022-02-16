@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;//need this to use List
-using System.Text;//needed for StringBUilder
+using System.Text;//needed for StringBuilder
+using System.Linq;
 
 namespace ConsoleAppCollectionsTypes
 {
@@ -16,8 +17,81 @@ namespace ConsoleAppCollectionsTypes
             //StringSecret();
 
             //StringBuilderEx();
+
+            //StringEx();
+
+            //CharArray();
+
+            //TimeTestOfStringVSStringBuilder();
+        }
+
+        private static void TimeTestOfStringVSStringBuilder()
+        {
+            string contender1 = "";
+
+            DateTime startForContender1 = DateTime.Now;
+
+            for (int i = 0; i < 10_000; i++)
+            {
+                contender1 = contender1 + '*';
+            }
+
+            DateTime endForContender1 = DateTime.Now;
+
+            StringBuilder contender2 = new StringBuilder();
+
+            DateTime startForContender2 = DateTime.Now;
+
+            for (int i = 0; i < 10_000; i++)
+            {
+                contender2.Append('*');
+            }
+
+            DateTime endForContender2 = DateTime.Now;
+
+            Console.WriteLine($"String time: {endForContender1 - startForContender1}");
+            Console.WriteLine($"StringBuilder time: {endForContender2 - startForContender2}");
+        }
+
+        private static void CharArray()
+        {
+            string originalText = "Hello world";
+
+            char[] textAsCharArray = originalText.ToCharArray();
+
+            Console.Write("Before: ");
+            PrintArrayContent(textAsCharArray);
+
+            MakeTextUpperCase(textAsCharArray);
+
+            Console.Write("After: ");
+            PrintArrayContent(textAsCharArray);
             
-            StringEx();
+            Console.WriteLine($"Test {textAsCharArray}");
+
+            Array.Fill(textAsCharArray, '*');
+            
+            Console.WriteLine(textAsCharArray);
+        }
+
+        static void PrintArrayContent(char[] toPrint)
+        {
+            foreach (char symbol in toPrint)
+            {
+                Console.Write(symbol);
+            }
+            Console.WriteLine();
+        }
+
+        private static void MakeTextUpperCase(char[] textAsCharArray)
+        {
+            string temp = new string(textAsCharArray);
+            temp = temp.ToUpperInvariant();
+
+            for (int i = 0; i < textAsCharArray.Length; i++)
+            {
+                textAsCharArray[i] = temp[i];
+            }
         }
 
         private static void StringBuilderEx()
