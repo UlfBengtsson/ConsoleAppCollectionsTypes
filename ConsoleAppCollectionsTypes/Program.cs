@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;//need this to use List
+using System.Text;//needed for StringBUilder
 
 namespace ConsoleAppCollectionsTypes
 {
@@ -12,7 +13,50 @@ namespace ConsoleAppCollectionsTypes
 
             //StringList();
 
-            StringSecret();
+            //StringSecret();
+
+            //StringBuilderEx();
+            
+            StringEx();
+        }
+
+        private static void StringBuilderEx()
+        {
+            //new String(/* can inset char or char array so the string will have that information inside of it when its created */);
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.Append("Hello");
+            stringBuilder.Append(' ');
+            stringBuilder.Append("World");
+
+            AlterText(stringBuilder);
+
+            Console.WriteLine(stringBuilder);
+        }
+
+        static void AlterText(StringBuilder textToAlter)
+        {
+            textToAlter.Insert(5, ", I love to code and this i tell to the ");
+        }
+
+
+        private static void StringEx()
+        {
+            //new String(/* can inset char or char array so the string will have that information inside of it when its created */);
+            string stringEx;
+
+            stringEx = "Hello";
+            stringEx += ' ';
+            stringEx += "World";
+
+            StringAlterText(stringEx);
+
+            Console.WriteLine("Inside StringEx: " + stringEx);
+        }
+        static void StringAlterText(string textToAlter)
+        {
+            textToAlter = textToAlter.Insert(5, ", I love to code and this i tell to the ");
+            Console.WriteLine("Inside StringAlterText: " + textToAlter);
         }
 
         private static void StringSecret()
